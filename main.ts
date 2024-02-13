@@ -4,6 +4,9 @@ namespace SpriteKind {
     export const obstacle = SpriteKind.create()
     export const splash = SpriteKind.create()
 }
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    mySprite.setScale(0.5, ScaleAnchor.Middle)
+})
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     mySprite.vy += -1000
 })
@@ -737,9 +740,9 @@ function splashScreen1 () {
     false
     )
     pause(5000)
-    sprites.destroy(splash1)
     game.splash("GET THE BOOK BAGS ON THE HOOKS")
     game.splash("AVOID WATER BOTTLES")
+    sprites.destroy(splash1)
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.obstacle, function (sprite, otherSprite) {
     info.changeScoreBy(-1)
@@ -752,6 +755,9 @@ info.onCountdownEnd(function () {
 })
 controller.A.onEvent(ControllerButtonEvent.Released, function () {
     mySprite.vy += 1000
+})
+controller.B.onEvent(ControllerButtonEvent.Released, function () {
+    mySprite.setScale(1, ScaleAnchor.Middle)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.backpack, function (sprite, otherSprite) {
     if (otherSprite.y < 90) {
